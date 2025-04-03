@@ -1,4 +1,8 @@
 import "./App.css";
+import Screen from "./game/screen";
+import Pad from "./game/buttons/Pad";
+import Action from "./game/buttons/Action";
+import StartSelect from "./game/buttons/StartSelect";
 
 function App() {
   return (
@@ -15,98 +19,16 @@ function App() {
           }}
         >
           {/*container screen*/}
-          <div
-            style={{
-              paddingTop: "5%",
-              paddingBottom: "25%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "85%",
-                height: "200px",
-                backgroundColor: "#bdae58",
-              }}
-            ></div>
-          </div>
+          <Screen/>
 
           {/*container buttons*/}
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <div
-              style={{
-                width: "60px",
-                height: "60px",
-                backgroundColor: "black",
-              }}
-            ></div>
-            <div style={{ paddingTop: "35%" }}>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  display: "flex",
-                  /*backgroundColor: "grey",*/
-                }}
-              >
-                <div>
-                  <button
-                    style={{
-                      width: "40px",
-                      height: "10px",
-                      display: "flex",
-                      borderRadius: "5px",
-                      backgroundColor: "#999",
-                      transform: "rotate(-25deg)",
-                    }}
-                  ></button>
-                </div>
-                <div>
-                  <button
-                    style={{
-                      width: "40px",
-                      height: "10px",
-                      display: "flex",
-                      borderRadius: "5px",
-                      backgroundColor: "#999",
-                      transform: "rotate(-25deg)",
-                    }}
-                  ></button>
-                </div>
-              </div>
-            </div>
+            {/*Botones direcciones*/}
+            <Pad/>
+              {/* Botones select start*/}
+              <StartSelect/>
             {/*Botones A y B*/}
-            <div
-              style={{
-                width: "60px",
-                height: "60px",
-                display: "flex",
-                /*backgroundColor: "black",*/
-              }}
-            >
-              <div>
-                <button
-                  style={{
-                    backgroundColor: "#a93671",
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    marginTop: "25px",
-                  }}
-                ></button>
-              </div>
-              <div>
-                <button
-                  style={{
-                    backgroundColor: "#a93671",
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                  }}
-                ></button>
-              </div>
-            </div>
+            <Action/>
           </div>
         </div>
       </div>
