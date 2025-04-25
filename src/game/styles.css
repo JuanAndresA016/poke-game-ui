@@ -55,3 +55,31 @@
     width: 342;
     height: 272;
   }
+
+  .screen-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .text{
+    font-family: 'Gill Sans';
+  }
+
+  .container-start-select{
+    width: 60px;
+    height: 60px;
+    display: flex;
+  }
+
+  .start-select-btn{
+    width: 40px;
+    height: 10px;
+    display: flex;
+    border-radius: 5px;
+    background-color: #999;
+    transform: rotate(-25deg);
+    margin-top: 75px;
+  }

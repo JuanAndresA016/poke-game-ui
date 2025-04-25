@@ -1,15 +1,37 @@
 import React from "react";
 
+const StartSelect = ({ handleSelectPokemon }) => {
+  return (
+    <div style={{ paddingTop: "35%" }}>
+      <div className="container-start-select">
+        <div className="container-btn-start">
+          <button
+            className="start-select-btn"
+            onClick={() => handleSelectPokemon()}
+          ></button>
+        </div>
+        <div className="container-btn-start">
+          <button className="start-select-btn"></button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default StartSelect;
+
+/*import React from "react";
+
 const StartSelect = () => {
   return (
     <div style={{ paddingTop: "35%" }}>
-      {/* Botones select start*/}
+      {/* Botones select start
       <div
         style={{
           width: "60px",
           height: "60px",
           display: "flex",
-          /*backgroundColor: "grey",*/
+          /*backgroundColor: "grey",
         }}
       >
         <div>
@@ -24,6 +46,7 @@ const StartSelect = () => {
               marginTop: "75px",
             }}
           ></button>
+          <p>Select</p>
         </div>
         <div>
           <button
@@ -37,6 +60,7 @@ const StartSelect = () => {
               marginTop: "75px",
             }}
           ></button>
+          <p>Start</p>
         </div>
       </div>
     </div>
@@ -44,3 +68,4 @@ const StartSelect = () => {
 };
 
 export default StartSelect;
+*/

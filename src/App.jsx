@@ -7,6 +7,8 @@ import { use, useEffect, useState } from "react";
 
 function App() {
   const [pokemones, setPokemones] = useState([]);
+  const [hoverPokemon, setHoverPokemon] = useState(0);
+  const [selectedPokemones, setSelectedPokemones] = useState([]);
 
   const BASE_URL = "https://pokeapi.co/api/v2/";
 
@@ -26,7 +28,48 @@ function App() {
 
   const handlePress = (dir) => {
     console.log(dir);
+    if (dir === "right") {
+      setHoverPokemon(hoverPokemon + 1);
+    }
+    if (dir === "left") {
+      setHoverPokemon(hoverPokemon - 1);
+    }
   };
+
+  const handleSelectPokemon = () => {
+    console.log("select pokemon", hoverPokemon);
+    const pokemonSelected = pokemones.filter(
+      (pokemon) => pokemon.id === hoverPokemon
+    );
+    const selections = [pokemonSelected, computerSelection()];
+    setSelectedPokemones(selections);
+    setPlayerHealth(100);
+    setEnemyHealth(100);
+  };
+
+  const computerSelection = () => {
+    const randomId = Math.floor(Math.random() * pokemones.length);
+    const selectElement = pokemones.filter(
+      (pokemon) => pokemon.id === randomId
+    );
+    return selectElement;
+  };
+  const [playerHealth, setPlayerHealth] = useState(100);
+  const [enemyHealth, setEnemyHealth] = useState(100);
+
+  const handleAttack = () => {
+    setEnemyHealth((prev) => Math.max(prev - 20, 0));
+  };
+
+  useEffect(() => {
+    if (enemyHealth <= 0 || playerHealth <= 0) {
+      setTimeout(() => {
+        setSelectedPokemones([]);
+        setPlayerHealth(100);
+        setEnemyHealth(100);
+      }, 500);
+    }
+  }, [enemyHealth, playerHealth]);
 
   useEffect(() => {
     getPokemones();
@@ -46,16 +89,22 @@ function App() {
           }}
         >
           {/*container screen*/}
-          <Screen pokemones={pokemones} />
+          <Screen
+            pokemones={pokemones}
+            hoverPokemon={hoverPokemon}
+            selectedPokemones={selectedPokemones}
+            playerHealth={playerHealth}
+            enemyHealth={enemyHealth}
+          />
 
           {/*container buttons*/}
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             {/*Botones direcciones*/}
             <Pad handlePress={handlePress} />
             {/* Botones select start*/}
-            <StartSelect />
+            <StartSelect handleSelectPokemon={handleSelectPokemon} />
             {/*Botones A y B*/}
-            <Action />
+            <Action handleAttack={handleAttack} />
           </div>
         </div>
       </div>
